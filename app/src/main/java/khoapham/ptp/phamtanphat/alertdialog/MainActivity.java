@@ -12,6 +12,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button btnAlert;
+    int position = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +33,12 @@ public class MainActivity extends AppCompatActivity {
                 builder.setIcon(R.mipmap.ic_launcher);
                 builder.setCancelable(false);
 
-                String[] mangconvat = {"Mèo","Chó","Heo","Gà","Cua"};
+                final String[] mangconvat = {"Mèo","Chó","Heo","Gà","Cua"};
 
                 builder.setSingleChoiceItems(mangconvat, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        position = i;
                     }
                 });
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
+                        Log.d("BBB",mangconvat[position]);
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
