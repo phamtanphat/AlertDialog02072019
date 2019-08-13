@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,11 +35,22 @@ public class MainActivity extends AppCompatActivity {
                 builder.setCancelable(false);
 
                 final String[] mangconvat = {"Mèo","Chó","Heo","Gà","Cua"};
+                boolean[] mangchecked = {true,false,false,false,true};
 
-                builder.setSingleChoiceItems(mangconvat, -1, new DialogInterface.OnClickListener() {
+//                builder.setSingleChoiceItems(mangconvat, -1, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        position = i;
+//                    }
+//                });
+                builder.setMultiChoiceItems(mangconvat, mangchecked, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        position = i;
+                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                        if (b){
+                            Toast.makeText(MainActivity.this,"Đã chọn con "+ mangconvat[i], Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(MainActivity.this,"Đã bỏ chọn"+ mangconvat[i], Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -46,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("BBB",mangconvat[position]);
+//                        Log.d("BBB",mangconvat[position]);
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
