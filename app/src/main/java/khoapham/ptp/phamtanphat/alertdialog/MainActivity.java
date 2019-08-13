@@ -28,9 +28,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Hộp thoại");
-                builder.setMessage("Bạn có muốn đóng ứng dụng");
+
                 builder.setIcon(R.mipmap.ic_launcher);
                 builder.setCancelable(false);
+
+                String[] mangconvat = {"Mèo","Chó","Heo","Gà","Cua"};
+
+                builder.setSingleChoiceItems(mangconvat, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
 
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
